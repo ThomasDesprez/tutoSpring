@@ -11,7 +11,7 @@
 	<div class="container">
 	<form th:action="@{index}" method = "GET">
 	<label> Mot clé : </label>
-	<input type="text" name="mc"/>
+	<input type="text" name="mc" th:value="${mc}"/>
 	<button class="btn btn-primary"> Chercher </button>
 	</form>
 	</div>
@@ -21,7 +21,7 @@
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>Désignation</th>Prix
+					<th>Désignation</th>
 					<th>Prix</th>
 					<th>Qtité</th>
 				</tr>
@@ -32,6 +32,7 @@
 					<td th:text="${p.designation}"></td>
 					<td th:text="${p.prix}"></td>
 					<td th:text="${p.quantite}"></td>
+					<td><a th:href="@{delete(id=${p.id},page=${pageCourante},size=${size},mc=${mc})}">Delete </a></td>
 				</tr>
 			</tbody>
 		</table>
@@ -40,7 +41,7 @@
 		<ul class="nav nav-pills">
 			<li th:class="${pageCourante}==${status.index}?'active':''"
 				th:each="page,status:${pages}"><a
-				th:href="@{index(page=${status.index},size=${size})}"
+				th:href="@{index(page=${status.index},size=${size},mc=${mc})}"
 				th:text=${status.index}></a></li>
 		</ul>
 	</div>

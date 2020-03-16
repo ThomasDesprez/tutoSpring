@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -24,11 +25,20 @@ public class ProduitController {
 			@RequestParam(name ="mc", defaultValue = "")String mc) {
 
 		Page<Produit> pageProduits = produitRepository.chercher("%" + mc +"%",PageRequest.of(p, s));
+		
 		model.addAttribute("listProduits", pageProduits.getContent());
 		int[] pages = new int[pageProduits.getTotalPages()];
 		model.addAttribute("size",s);
 		model.addAttribute("pages", pages);
 		model.addAttribute("pageCourante",p);
+		model.addAttribute("mc",mc);
 		return "produits";
+	}
+	
+	@RequestMapping(value="/delete",method=RequestMethod.GET)
+	public String delete(Long id,String mc,int page,int size) {
+		
+		produitRepository.deleteById(id);
+		return "redirect:/index?page=" +page+"&size"+size+"&mc="+mc;
 	}
 }
