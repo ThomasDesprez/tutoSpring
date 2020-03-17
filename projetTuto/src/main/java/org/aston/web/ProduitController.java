@@ -25,16 +25,16 @@ public class ProduitController {
 	@RequestMapping(value = "/index")
 	public String index(Model model, @RequestParam(name = "page", defaultValue = "0") int p,
 			@RequestParam(name = "size", defaultValue = "5") int s,
-			@RequestParam(name = "mc", defaultValue = "") String mc) {
+			@RequestParam(name = "mc", defaultValue = "") String keyword) {
 
-		Page<Produit> pageProduits = produitRepository.chercher("%" + mc + "%", PageRequest.of(p, s));
+		Page<Produit> pageProduits = produitRepository.chercher("%" + keyword + "%", PageRequest.of(p, s));
 
 		model.addAttribute("listProduits", pageProduits.getContent());
 		int[] pages = new int[pageProduits.getTotalPages()];
 		model.addAttribute("size", s);
 		model.addAttribute("pages", pages);
 		model.addAttribute("pageCourante", p);
-		model.addAttribute("mc", mc);
+		model.addAttribute("mc", keyword);
 		return "produits";
 	}
 

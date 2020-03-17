@@ -36,7 +36,10 @@
 						<td th:text="${p.prix}"></td>
 						<td th:text="${p.quantite}"></td>
 						<td><a onclick="return confirm('Etes vous sûr ?')"
-							th:href="@{delete(id=${p.id},page=${pageCourante},size=${size},mc=${mc})}">Delete
+							th:href="@{ delete( id=${p.id}, page=${pageCourante}, size=${size}, mc=${mc} ) }"
+
+							
+							>Delete
 						</a></td>
 						<td><a th:href="@{edit(id=${p.id})}"> Edit</a></td>
 					</tr>
@@ -51,6 +54,8 @@
 					th:text=${status.index}></a></li>
 			</ul>
 		</div>
+		<iframe width="2560" height="1440" src="https://www.youtube.com/embed/rIYK0C0ES94" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	</div>
 </body>
 </html>
+<!-- 							"@{delete(id=${p.id},page=${pageCourante},size=${size},mc=${mc})}" -->
