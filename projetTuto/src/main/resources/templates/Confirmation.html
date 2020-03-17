@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="UTF-8" />
+<title>Ajouter Produit</title>
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	th:ref="@{/css/bootstrap.min.css}" />
+
+<link rel="stylesheet" type="text/css" th:ref="@{/css/style.css}"
+	href="../static/css/style.css" />
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+
+			<div class="panel panel-default">
+				<div class="panel-heading">Confirmation</div>
+				<div class="panel-body">
+					<div class="from-group">
+						<label> ID </label> <label th:text="${produit.id}"></label>
+					</div>
+
+					<div class="from-group">
+						<label> Designation </label> <label
+							th:text="${produit.designation}"></label>
+					</div>
+
+					<div class="from-group">
+						<label>Prix</label> <label th:text="${produit.prix}"></label>
+					</div>
+
+					<div class="from-group">
+						<label> Quantite </label> <label th:text="${produit.quantite}"></label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
